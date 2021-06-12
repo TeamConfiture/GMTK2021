@@ -95,8 +95,10 @@ public class SpawnPeople : MonoBehaviour
             else
             {
                 Debug.Log("Images Not Matching");
+                Animator animator = lifes[hearts - 1].GetComponent<Animator>();
                 ResetBuffers();
-                Destroy(lifes[hearts - 1]);
+                animator.Play("Life_destroy");
+                Destroy(lifes[hearts - 1], animator.GetCurrentAnimatorStateInfo(0).length);
                 hearts--;
             }
         }
