@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SpawnPeople : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class SpawnPeople : MonoBehaviour
     public GameObject[] characters;
     public GameObject[] lifes;
     private int hearts = 3;
-
+    public Slider slider;
     public EventSystem mySystem;
     private GameObject lastSelectedObject;
     // Start is called before the first frame update
@@ -90,7 +91,12 @@ public class SpawnPeople : MonoBehaviour
             if (mySystem.currentSelectedGameObject.name.Substring(0,4) == lastSelectedObject.name.Substring(0, 4))
             {
                 Debug.Log("Image Match !");
+                slider.value += 0.1f;
                 UpdateBoardAfterSuccess();
+                if (slider.value == 1f)
+                {
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("Win");
+                }
             }
             else
             {
