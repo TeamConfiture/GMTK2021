@@ -87,7 +87,7 @@ public class SpawnPeople : MonoBehaviour
         {
             Debug.Log("Last Selected : " + lastSelectedObject);
             Debug.Log("Current Selected : " + mySystem.currentSelectedGameObject);
-            if (mySystem.currentSelectedGameObject.name != lastSelectedObject.name && mySystem.currentSelectedGameObject.name.Substring(0,4) == lastSelectedObject.name.Substring(0, 4))
+            if (mySystem.currentSelectedGameObject.name.Substring(0,4) == lastSelectedObject.name.Substring(0, 4))
             {
                 Debug.Log("Image Match !");
                 UpdateBoardAfterSuccess();
@@ -100,6 +100,10 @@ public class SpawnPeople : MonoBehaviour
                 animator.Play("Life_destroy");
                 Destroy(lifes[hearts - 1], animator.GetCurrentAnimatorStateInfo(0).length);
                 hearts--;
+                if (hearts <= 0)
+                {
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+                }
             }
         }
     }
