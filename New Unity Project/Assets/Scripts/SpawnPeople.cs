@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SpawnPeople : MonoBehaviour
 {
 
     private float time = 0f;
     public float spawnFrequency = 1f;
-
+    public GameObject canvasObject;
     public GameObject[] characters;
+    public GameObject camera;
 
+    public EventSystem mySystem;
+    private GameObject lastSelectedObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +22,7 @@ public class SpawnPeople : MonoBehaviour
 
     public MovingCharacter SpawnCharacter(bool direction, int position)
     {
-        int random = Random.Range(0, 4);
+        int random = Random.Range(0, 8);
         GameObject newChar = Instantiate(this.characters[random]) as GameObject;
         MovingCharacter c = newChar.GetComponent<MovingCharacter>();
         c.direction = direction;
@@ -44,7 +48,14 @@ public class SpawnPeople : MonoBehaviour
         }
 
         c.transform.position = pos;
-
+        c.transform.SetParent(canvasObject.transform, false);
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerClick;
+        entry.callback.AddListener((eventData) => {
+            Debug.Log(c.name);
+            CheckMatch();
+        });
+        c.GetComponent<EventTrigger>().triggers.Add(entry);
         return c;
     }
 
@@ -62,5 +73,44 @@ public class SpawnPeople : MonoBehaviour
             time = 0;
         }
         time += Time.deltaTime;
+    }
+
+
+    public void CheckMatch()
+    {
+        if (lastSelectedObject == null)
+            lastSelectedObject = mySystem.currentSelectedGameObject;
+        Debug.Log("Select & Checking Match..");
+
+        if (mySystem.currentSelectedGameObject != lastSelectedObject)
+        {
+            Debug.Log("Last Selected : " + lastSelectedObject);
+            Debug.Log("Current Selected : " + mySystem.currentSelectedGameObject);
+            if (mySystem.currentSelectedGameObject.name != lastSelectedObject.name && mySystem.currentSelectedGameObject.name.Substring(0,4) == lastSelectedObject.name.Substring(0, 4))
+            {
+                Debug.Log("Image Match !");
+                UpdateBoardAfterSuccess();
+            }
+            else
+            {
+                Debug.Log("Images Not Matching");
+                ResetBuffers();
+            }
+        }
+    }
+
+    void UpdateBoardAfterSuccess()
+    {
+        // I brutaly set the whole gameObject to unActive but you could just disable the image component
+        lastSelectedObject.SetActive(false);
+        mySystem.currentSelectedGameObject.SetActive(false);
+        ResetBuffers();
+    }
+
+    void ResetBuffers()
+    {
+        lastSelectedObject = null;
+        mySystem.SetSelectedGameObject(null);
+
     }
 }
