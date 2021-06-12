@@ -10,7 +10,8 @@ public class SpawnPeople : MonoBehaviour
     public float spawnFrequency = 1f;
     public GameObject canvasObject;
     public GameObject[] characters;
-    public GameObject camera;
+    public GameObject[] lifes;
+    private int hearts = 3;
 
     public EventSystem mySystem;
     private GameObject lastSelectedObject;
@@ -95,6 +96,8 @@ public class SpawnPeople : MonoBehaviour
             {
                 Debug.Log("Images Not Matching");
                 ResetBuffers();
+                Destroy(lifes[hearts - 1]);
+                hearts--;
             }
         }
     }
