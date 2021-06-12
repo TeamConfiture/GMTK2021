@@ -29,16 +29,16 @@ public class SpawnPeople : MonoBehaviour
 
         switch (position)
         {
-            case 0:
-                pos.y = -2.6f;
+            case 0: // Bas
+                pos.y = -3.3f;
                 pos.z = -3f;
                 break;
-            case 1:
-                pos.y = 0.3f;
+            case 1: // Milieu
+                pos.y = -0.75f;
                 pos.z = -2f;
                 break;
-            case 2:
-                pos.y = 2.3f;
+            case 2: // Haut
+                pos.y = 1.3f;
                 pos.z = -1f;
                 break;
         }

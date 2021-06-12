@@ -796,10 +796,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnFrequency: 1
   characters:
-  - {fileID: 0}
-  - {fileID: 7389460942580586499, guid: 9858be69ec31ee049a309446aa9b0813, type: 3}
-  - {fileID: 9083859034119958830, guid: 6c75ff742e6ed1640b257c4b37cbf4c9, type: 3}
-  - {fileID: 3474571082070583216, guid: 33c64a1db1faf8d48b49c7f259776dfa, type: 3}
+  - {fileID: 5970892960811356678, guid: 04ed0ae0ac2af5743856113576f14ba5, type: 3}
+  - {fileID: 1810886510017670058, guid: 9858be69ec31ee049a309446aa9b0813, type: 3}
+  - {fileID: 690983983748630173, guid: 9aa14218ab3111c4e8024af6cfb7db10, type: 3}
+  - {fileID: 6048217613622541887, guid: 4c6cbefb7ecaa774cac73d73e8885a9e, type: 3}
+  - {fileID: 7435511684556268408, guid: 6c75ff742e6ed1640b257c4b37cbf4c9, type: 3}
+  - {fileID: 1780878566007902412, guid: 33c64a1db1faf8d48b49c7f259776dfa, type: 3}
+  - {fileID: 8815095599083980413, guid: 32331b70f587d3740a57a4f33cc55b1c, type: 3}
+  - {fileID: 4043045050988722784, guid: 88c63b8e98e9c3c42966c01527c5b5fe, type: 3}
 --- !u!1 &1541000426
 GameObject:
   m_ObjectHideFlags: 0
