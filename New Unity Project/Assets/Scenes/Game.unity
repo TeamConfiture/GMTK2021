@@ -795,7 +795,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnFrequency: 1
-  myPrefab: {fileID: 114196090681592254, guid: 30a23de68b58ec449a18d904799bf0bc, type: 3}
+  characters:
+  - {fileID: 0}
+  - {fileID: 7389460942580586499, guid: 9858be69ec31ee049a309446aa9b0813, type: 3}
+  - {fileID: 9083859034119958830, guid: 6c75ff742e6ed1640b257c4b37cbf4c9, type: 3}
+  - {fileID: 3474571082070583216, guid: 33c64a1db1faf8d48b49c7f259776dfa, type: 3}
 --- !u!1 &1541000426
 GameObject:
   m_ObjectHideFlags: 0

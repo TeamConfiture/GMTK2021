@@ -17,7 +17,7 @@ public class MovingCharacter : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
 
-        if (direction)
+        if (!direction)
         {
             spriteRenderer.flipX = true;
         }
@@ -26,11 +26,10 @@ public class MovingCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         transform.position = new Vector3(transform.position.x + (speed * Time.deltaTime * (direction ? 1f : -1f)), transform.position.y, transform.position.z);
-        if(Mathf.Abs(transform.position.x) > 30f)
-        {
-            Destroy(gameObject);
-        }
+    }
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }

@@ -8,7 +8,7 @@ public class SpawnPeople : MonoBehaviour
     private float time = 0f;
     public float spawnFrequency = 1f;
 
-    public GameObject myPrefab;
+    public GameObject[] characters;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,8 @@ public class SpawnPeople : MonoBehaviour
 
     public MovingCharacter SpawnCharacter(bool direction, int position)
     {
-        GameObject newChar = Instantiate(this.myPrefab) as GameObject;
+        int random = Random.Range(0, 4);
+        GameObject newChar = Instantiate(this.characters[random]) as GameObject;
         MovingCharacter c = newChar.GetComponent<MovingCharacter>();
         c.direction = direction;
 
