@@ -127,7 +127,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   direction: 1
-  heartPop: {fileID: 0}
 --- !u!222 &1429533834805043136
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -268,7 +267,7 @@ PrefabInstance:
     - target: {fileID: 8978249448546001147, guid: f5a8fb1d2ebc3bf48be9f532eb15c77c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 8978249448546001147, guid: f5a8fb1d2ebc3bf48be9f532eb15c77c,
         type: 3}

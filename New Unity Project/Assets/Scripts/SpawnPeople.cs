@@ -16,11 +16,11 @@ public class SpawnPeople : MonoBehaviour
     public Slider slider;
     public EventSystem mySystem;
     private GameObject lastSelectedObject;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
+    public float tailleJauge = 0;
+    public int level;
+    private bool stopSpawn = false;
+    public Animator levelClearedAnim;
+    public GameObject panel;
 
     public MovingCharacter SpawnCharacter(bool direction, int position)
     {
@@ -64,7 +64,7 @@ public class SpawnPeople : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(time > spawnFrequency)
+        if(time > spawnFrequency && !stopSpawn)
         {
             // spawn people
             bool direction = Random.Range(0f, 1f) > 0.5f;
@@ -102,11 +102,12 @@ public class SpawnPeople : MonoBehaviour
                 Wait(currentAnim);
                 Wait(lastSelectedObject.GetComponentsInChildren<Animator>()[1]);
                 Debug.Log("Image Match !");
-                slider.value += 0.1f;
+                slider.value += (1f / tailleJauge);
                 UpdateBoardAfterSuccess();
                 if (slider.value == 1f)
                 {
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("Win");
+                    stopSpawn = true;
+                    panel.SetActive(true);
                 }
             }
             else
@@ -142,7 +143,17 @@ public class SpawnPeople : MonoBehaviour
 
     }
 
-
+    public void NextLevel()
+    {
+        if (level == 3)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Win");
+        }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Level" + (level + 1));
+        }
+    }
 
     IEnumerator Wait(Animator anim)
     {
