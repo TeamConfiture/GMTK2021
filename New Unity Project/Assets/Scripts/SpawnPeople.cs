@@ -24,7 +24,7 @@ public class SpawnPeople : MonoBehaviour
 
     public MovingCharacter SpawnCharacter(bool direction, int position)
     {
-        int random = Random.Range(0, 8);
+        int random = Random.Range(0, characters.Length);
         GameObject newChar = Instantiate(this.characters[random]) as GameObject;
         MovingCharacter c = newChar.GetComponent<MovingCharacter>();
         c.direction = direction;
@@ -81,15 +81,26 @@ public class SpawnPeople : MonoBehaviour
     public void CheckMatch()
     {
         if (lastSelectedObject == null)
+        {
             lastSelectedObject = mySystem.currentSelectedGameObject;
+            lastSelectedObject.GetComponentsInChildren<Animator>()[1].SetBool("Active", true);
+            
+        }
         Debug.Log("Select & Checking Match..");
 
         if (mySystem.currentSelectedGameObject != lastSelectedObject)
         {
             Debug.Log("Last Selected : " + lastSelectedObject);
             Debug.Log("Current Selected : " + mySystem.currentSelectedGameObject);
-            if (mySystem.currentSelectedGameObject.name.Substring(0,4) == lastSelectedObject.name.Substring(0, 4))
+            Debug.Log("toto " + mySystem.currentSelectedGameObject.GetComponentsInChildren<Animator>()[1].name);
+            Animator currentAnim = mySystem.currentSelectedGameObject.GetComponentsInChildren<Animator>()[1];
+            currentAnim.SetBool("Active", true);
+            currentAnim.Play("HeartPop");
+            Wait(currentAnim);
+            if (mySystem.currentSelectedGameObject.name.Substring(0, 4) == lastSelectedObject.name.Substring(0, 4))
             {
+                Wait(currentAnim);
+                Wait(lastSelectedObject.GetComponentsInChildren<Animator>()[1]);
                 Debug.Log("Image Match !");
                 slider.value += 0.1f;
                 UpdateBoardAfterSuccess();
@@ -100,6 +111,8 @@ public class SpawnPeople : MonoBehaviour
             }
             else
             {
+                lastSelectedObject.GetComponentsInChildren<Animator>()[1].SetBool("Active", false);
+                mySystem.currentSelectedGameObject.GetComponentsInChildren<Animator>()[1].SetBool("Active", false);
                 Debug.Log("Images Not Matching");
                 Animator animator = lifes[hearts - 1].GetComponent<Animator>();
                 ResetBuffers();
@@ -127,5 +140,13 @@ public class SpawnPeople : MonoBehaviour
         lastSelectedObject = null;
         mySystem.SetSelectedGameObject(null);
 
+    }
+
+
+
+    IEnumerator Wait(Animator anim)
+    {
+        Debug.Log("wait");
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length + anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
     }
 }

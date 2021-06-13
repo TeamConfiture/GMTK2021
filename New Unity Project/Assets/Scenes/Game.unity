@@ -836,6 +836,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1869393433}
     m_Modifications:
+    - target: {fileID: 4149013973381318755, guid: cda127f30150f5e41bbfd48af63e5131,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.37292576
+      objectReference: {fileID: 0}
     - target: {fileID: 6983150882902679547, guid: cda127f30150f5e41bbfd48af63e5131,
         type: 3}
       propertyPath: m_Name
@@ -1172,6 +1177,8 @@ MonoBehaviour:
   - {fileID: 1780878566007902412, guid: 33c64a1db1faf8d48b49c7f259776dfa, type: 3}
   - {fileID: 8815095599083980413, guid: 32331b70f587d3740a57a4f33cc55b1c, type: 3}
   - {fileID: 4043045050988722784, guid: 88c63b8e98e9c3c42966c01527c5b5fe, type: 3}
+  - {fileID: 843878519475882552, guid: e559d3f80dc811642a3307fbf5f81f62, type: 3}
+  - {fileID: 6627068827214726236, guid: 16d14d19b84c8254192d69d4c93e9001, type: 3}
   lifes:
   - {fileID: 1871892662}
   - {fileID: 2039360411}

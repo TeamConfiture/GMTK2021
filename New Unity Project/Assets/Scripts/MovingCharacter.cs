@@ -8,7 +8,6 @@ public class MovingCharacter : MonoBehaviour
     public float speed = 2f;
     public bool direction = true;
 
-
     private SpriteRenderer spriteRenderer ;
 
 

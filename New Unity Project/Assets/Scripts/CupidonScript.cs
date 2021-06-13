@@ -15,7 +15,6 @@ public class CupidonScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Playing anim");
             anim.Play("Cupidon");
         }
     }
