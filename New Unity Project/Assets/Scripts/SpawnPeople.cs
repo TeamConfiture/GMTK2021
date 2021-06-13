@@ -83,7 +83,7 @@ public class SpawnPeople : MonoBehaviour
         if (lastSelectedObject == null)
         {
             lastSelectedObject = mySystem.currentSelectedGameObject;
-            if(lastSelectedObject.name.Substring(0, 4) == "Gris")
+            if (lastSelectedObject.name.Substring(0, 4) == "Gris")
             {
                 Animator animator = lifes[hearts - 1].GetComponent<Animator>();
                 ResetBuffers();
