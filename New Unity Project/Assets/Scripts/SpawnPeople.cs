@@ -83,7 +83,21 @@ public class SpawnPeople : MonoBehaviour
         if (lastSelectedObject == null)
         {
             lastSelectedObject = mySystem.currentSelectedGameObject;
-            lastSelectedObject.GetComponentsInChildren<Animator>()[1].SetBool("Active", true);
+            if(lastSelectedObject.name.Substring(0, 4) == "Gris")
+            {
+                Animator animator = lifes[hearts - 1].GetComponent<Animator>();
+                ResetBuffers();
+                animator.Play("Life_destroy");
+                Destroy(lifes[hearts - 1], animator.GetCurrentAnimatorStateInfo(0).length);
+                hearts--;
+                if (hearts <= 0)
+                {
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+                }
+            } else
+            {
+                lastSelectedObject.GetComponentsInChildren<Animator>()[1].SetBool("Active", true);
+            }
             
         }
         Debug.Log("Select & Checking Match..");
@@ -97,7 +111,19 @@ public class SpawnPeople : MonoBehaviour
             currentAnim.SetBool("Active", true);
             currentAnim.Play("HeartPop");
             Wait(currentAnim);
-            if (mySystem.currentSelectedGameObject.name.Substring(0, 4) == lastSelectedObject.name.Substring(0, 4))
+            if (mySystem.currentSelectedGameObject.name.Substring(0, 4) == "Gris")
+            {
+                Animator animator = lifes[hearts - 1].GetComponent<Animator>();
+                ResetBuffers();
+                animator.Play("Life_destroy");
+                Destroy(lifes[hearts - 1], animator.GetCurrentAnimatorStateInfo(0).length);
+                hearts--;
+                if (hearts <= 0)
+                {
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+                }
+
+            } else if (mySystem.currentSelectedGameObject.name.Substring(0, 4) == lastSelectedObject.name.Substring(0, 4))
             {
                 Wait(currentAnim);
                 Wait(lastSelectedObject.GetComponentsInChildren<Animator>()[1]);
